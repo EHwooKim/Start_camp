@@ -46,6 +46,20 @@ def pong_me():
     date = request.args.get('date')
     return render_template('pong_me.html',My_name=My_name,gender=gender,date=date)
 
+@app.route('/lotto')
+def lotto():
+    return render_template('lotto.html')
+
+@app.route('/lotto_result')
+def lotto_result():
+    name = request.args.get('name')
+    num = request.args.get('num')
+    random.seed(num) # 입력한 숫자를 기준으로 난수가 고정되는..? 그런..
+    numbers = random.sample(range(1,46), 6)
+    return render_template('lotto_result.html',name=name,num=num,numbers=numbers)
+
+
+
 
 
 if __name__ == '__main__':
